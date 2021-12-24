@@ -21,3 +21,21 @@ body {
 .navbar a:hover {
     color: #ffA500;
 }
+
+#wrap {
+    min-height: 100px;
+    margin-top: 10px;
+    background: #a0aec0;
+}
+
+.table {
+    width: 50%;
+    margin: auto;
+    border: 1px #1a202c solid;
+}
+
+.table tr td {
+    text-align: center;
+    margin: auto;
+    border: 1px #1a202c solid;
+}

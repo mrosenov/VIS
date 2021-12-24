@@ -1,22 +1,33 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>ВИС</title>
-</head>
-<body>
-<header>
-    <h1 style="text-align: center">ВИС: ВОЕННА ИНФОРМАЦИОННА СИСТЕМА</h1>
-    <h3 style="text-align: center">ЗА УПРАВЛЕНИЕ НА ДАННИ</h3>
-</header>
-<section>
-    <ul class="navbar">
-        <li><a href="index">Начало</a></li>
-        <li><a href="employees">Личен Състав</a></li>
-    </ul>
-</section>
+@extends('components.layout')
 
-</body>
-</html>
+@section('section')
+    <div class="card border-primary mb-3">
+        <div class="card-header">Справка на личният състав</div>
+        <div class="card-body">
+            <table class="table table-hover" style="text-align: center;">
+                @if ($employees->count() <=0)
+                    <div class="alert alert-dismissible alert-danger">Няма въведени данни за личен състав</div>
+                @else
+                    <tr>
+                        <td>Име</td>
+                        <td>Бащино Име</td>
+                        <td>Фамилия</td>
+                        <td>Чин</td>
+                        <td></td>
+                    </tr>
+
+                    @foreach($employees as $employee)
+                        <tr>
+                            <td>{{ $employee->name }}</td>
+                            <td>{{ $employee->secondname }}</td>
+                            <td>{{ $employee->lastname }}</td>
+                            <td>{{ $employee->rank }}</td>
+                            <td><a href="employee/{{ $employee->id }}"> <i class="fa-solid fa-user-gear"></i> </a></td>
+                        </tr>
+                    @endforeach
+                @endif
+            </table>
+        </div>
+    </div>
+@endsection
+
