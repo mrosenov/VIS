@@ -15,12 +15,13 @@ class Employees extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id()->unique();
-            $table->string('name');
-            $table->string('secondname');
-            $table->string('lastname');
+            $table->string('names');
+            $table->BigInteger('EGN');
             $table->enum('rank',['редник I клас', 'редник II клас','редник III клас', 'ефрейтор I клас', 'ефрейтор II клас', 'мл.сержант', 'сержант', 'ст.сержант', 'старшина', 'оф.канд', 'лейтенант', 'ст.лейтенант', 'капитан', 'майор', 'подполковник', 'полковник', 'бригаден-генерал', 'генерал-майор', 'генерал-лейтенант', 'генерал']);
             $table->integer('vacation');
             $table->integer('compensation');
+            $table->date('hired');
+            $table->date('retired')->nullable();
             $table->timestamps();
         });
     }

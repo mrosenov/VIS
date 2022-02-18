@@ -11,15 +11,11 @@
                 </tr>
                 <tr>
                     <td>Име</td>
-                    <td>{{ $employee->name }}</td>
+                    <td>{{ $employee->names }}</td>
                 </tr>
                 <tr>
-                    <td>Бащино Име</td>
-                    <td>{{ $employee->secondname }}</td>
-                </tr>
-                <tr>
-                    <td>Фамилия</td>
-                    <td>{{ $employee->lastname }}</td>
+                    <td>ЕГН</td>
+                    <td>{{ $employee->EGN }}</td>
                 </tr>
                 <tr>
                     <td>Чин</td>
@@ -27,11 +23,39 @@
                 </tr>
                 <tr>
                     <td>Отпуск</td>
-                    <td>{{ $employee->vacation }}</td>
+                    <td>
+                        {{ $employee->vacation }}
+                        @if ($employee->vacation <= 1)
+                            Ден
+                        @else
+                            Дни
+                        @endif
+                    </td>
                 </tr>
                 <tr>
                     <td>Компенсации</td>
-                    <td>{{ $employee->compensation }}</td>
+                    <td>
+                        {{ $employee->compensation }}
+                        @if ($employee->compensation <= 1)
+                            Ден
+                        @else
+                            Дни
+                        @endif
+                    </td>
+                </tr>
+                <tr>
+                    <td>Започнал</td>
+                    <td>{{ $employee->hired }}</td>
+                </tr>
+                <tr>
+                    <td>Стаж</td>
+                    <td>
+                        {{ Carbon::parse($employee->hired)->diffForHumans(null, true) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Напуснал/Пенсиониран</td>
+                    <td>{{ $employee->retired }}</td>
                 </tr>
             </table>
             <a href="#" class="btn btn-warning" style="display: flex; justify-content: center; margin-bottom: 5px;">Редактирай</a>

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\EmployeesController;
 use App\Models\Employees;
 use App\Models\News;
 use Illuminate\Support\Facades\Route;
@@ -15,20 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index', [
-        'news' => News::all()
-    ]);
-});
+Route::get('/', [NewsController::class, 'index'])->name('home');
+Route::get('employees', [EmployeesController::class, 'Employees'])->name('Employees');
+Route::get('employee/{id}', [EmployeesController::class, 'Employee'])->name('Employee');
 
-Route::get('employees', function () {
-    return view('employees', [
-        'employees' => Employees::all()
-    ]);
-});
-
-Route::get('employee/{id}', function (Employees $id) {
-        return view('employee', [
-            'employee' => $id
-        ]);
-});
